@@ -1,0 +1,23 @@
+#BSUB -J "ct[1-22]"  # n jobs in array, batch size
+#BSUB -R rusage[mem=16000]  # for each cpu
+#BSUB -n 1  # n cpu
+#BSUB -R "span[hosts=1]" # All hosts on the same chassis"
+mkdir -p ./log
+#BSUB -o ./log/lsf.%J.%I.txt
+#BSUB -W 144:00
+#BSUB -q long
+#BSUB -N
+i=$(($LSB_JOBINDEX- 1))
+F=(`ls fastq/*R1*gz`)
+f1=${F[$i]}
+f2=${f1/R1/R2}
+name=$(basename $f1)
+name=${name/.R1.fq.gz/}
+echo "python MutGenExactMatchStat.py $f1 $f2 $name"
+
+
+#source activate osr
+#runipy -o MutGenExactMatchStat.ipynb
+#jupyter nbconvert --to html MutGenExactMatchStat.ipynb
+mkdir -p log
+python MutGenExactMatchStat.py $f1 $f2 $name &> log/$name.log
