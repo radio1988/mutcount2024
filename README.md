@@ -1,23 +1,18 @@
 # mutcount2024
 
-This repo host the code to quantify exact match count for Phosphosite Scanning sequencing data developed by Jennifer Benanti lab.
+This repo hosts the code to quantify exact match counts for Phosphosite Scanning sequencing data of HCM1, developed in Jennifer Benanti's lab.
 
-- The code in `AE_type/` folder is older, but it was the exact code used to reproduce the results for AE type
+- The code in AE_type/ can be used to reproduce the results from screening of the HCM1 AE library
 
-- The code in `WA_WE_type/` folder is newer, and it can be used to reproduce the results for WA_WE type
+- The code in WA_WE_type/ folder can be used to reproduce the results for from screening the combined HCM1 WA and WE libraries
 
-Under each folder, a readme file can be found that shows how to run the code on the example data
+Each folder contains a readme file that details how to run the code on example data
 
 
 ## Details
-- AE: library containing all A and E substitutions at each phosphosite, in all possible combinations, in addition WWWWWWWW was added, creating 257 patterns
-
-- WA: library containing the wild type sequence (W) or A substitutions at each phosphosite, in all possible combinations from WWWWWWWW to AAAAAAAA, in addition EEEEEEEE were added, making 257 combinations
-
-- WE: library containing the wild type sequence (W) or E substitutions at each phosphosite, in all possible combinations from WWWWWWWW to EEEEEEEE, in addition AAAAAAAA were added, making 257 combinations
-
-- WA_WE: All 257 combinations from WA and 257 combinations from WE were merged, then one copy of the 3 duplicated combinations (WWWWWWWW, AAAAAAAA, and EEEEEEEE) were removed, making 511 unique combinations
-
-- Only exact matches in read fragments are counted
-
-- All read fragments without an exact match are counted as 'others' 
+- AE: library containing all A and E substitutions at each phosphosite, in all possible combinations, in addition to the completely wild type sequence, resulting in 256 unique sequences
+-	WA: library containing the wild type sequence (W) or A substitutions at each phosphosite, in all possible combinations, in addition to the completely wild type sequence, resulting in 256 sequences
+-	WE: library containing the wild type sequence (W) or E substitutions at each phosphosite, in all possible combinations, in addition to the completely wild type sequence, resulting in 256 sequences
+-	WA_WE: library that includes all sequences in the WA and WE libraries, resulting in 511 unique sequences 
+-	Only exact matches in read fragments are counted
+-	All read fragments without an exact match are counted as 'others'
